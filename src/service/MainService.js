@@ -18,8 +18,8 @@ export function getSummaryData(){
         countryCodes.forEach((countryCode)=>{
             countryList.forEach((countryObject)=>{
                 if(countryObject.value===countryCode){   
-                    console.log(countryObject.label);
-                    availableCountries.push(countryObject.label)
+                    console.log(countryObject);
+                    availableCountries.push(countryObject)
                   }
             })
         })
@@ -27,11 +27,19 @@ export function getSummaryData(){
     })
     .then(availableCountries=>{
         console.log("AVAILABLE COUNTRIES")
-        availableCountries.sort((a,b)=>{String(a).localeCompare(String(b),new Intl.Collator('tr'))})
         console.log(availableCountries)
         return availableCountries;
-       // return availableCountries
+      
     })
     return result;
-    
+
+}
+
+export default function summaryData(){
+    const result=  fetch("https://api.covid19api.com/summary")
+    .then(response=>response.json())
+    .then(res=>{
+        return res
+    })
+
 }
