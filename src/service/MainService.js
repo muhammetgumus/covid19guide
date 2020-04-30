@@ -35,11 +35,11 @@ export function getSummaryData(){
 
 }
 
-export default function summaryData(){
-    const result=  fetch("https://api.covid19api.com/summary")
-    .then(response=>response.json())
-    .then(res=>{
-        return res
-    })
+export default async function summaryData(){
+    const result= await fetch("https://api.covid19api.com/summary")
+    const json= await result.json();
+    const finalResult= await json;
+    return  finalResult;    
 
 }
+

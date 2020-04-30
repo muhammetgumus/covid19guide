@@ -26,10 +26,15 @@
 
 .card-navbar {
 box-shadow: black;
-background-color: darkgray;
+background-color: #0074D9;
 height: 75px;
-border-bottom-left-radius: 2%;
-border-bottom-right-radius: 2%;
+
+margin: 15px;
+}
+
+.hashtag{
+  text-align:left;
+  color:white;
 }
 
 .App-link {
