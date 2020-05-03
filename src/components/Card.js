@@ -8,7 +8,7 @@ export default class CardComponent extends React.Component {
     super(props)
   }
   render() {
-    const cardPerRow=4;
+    const cardPerRow=6;
     const styleCard = {
     
       "width": "100px",
@@ -21,10 +21,19 @@ export default class CardComponent extends React.Component {
       }
      
     }
-   
-
 
     let countryList  = []
+    let lastArray=[]
+    const lastStyle = {
+    
+      "maxWidth": "200px",
+      "height": "300px",
+      //"display" :"inline-block",
+      "margin":"200px",
+      "box-shadow": "0 4px 8px 0 rgba(0,0,0,111)",
+      "transition": "0.3s"
+     
+    }
     if (this.props.cardType == "countries") {
       if (this.props.data != null && this.props.data != undefined && this.props.data.length != 0) {
 
@@ -32,133 +41,79 @@ export default class CardComponent extends React.Component {
           let flagClassName = "flag-icon flag-icon-" + x.CountryCode.toLowerCase()
           const lastStyle = {
     
-            "width": "200px",
-            "height": "300px",
-            "display" :"inline",
-            "margin":"10"
-  //          "cardComponent:hover": "{backgroundColor: #fff }"
+            "width": "275px",
+            "height": "320px",
+            "display" :"inline-block",
+            "margin":"20px",
+            "border": "1px solid #ccc",
+            "border-radius": "5px",
+            "margin": "10px 5px",
+            "padding": "4px", 
+            "box-shadow": "0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23)"
+                
+           // "box-shadow": "0 4px 8px 0 rgba(0,0,0,3)",
+            //"transition": "0.9s"
            
           }
-          let cnt = //<Grid.Column>
-            //<div>
-          
-              <Card  key={x.CountryCode} className="cardComponent" style={{lastStyle }} >
-                <Card.Content style={{"display": "inline-block"}}>
+          let cnt = 
+              <Card  key={x.CountryCode} style={lastStyle}  >
+                <Card.Content style={{lastStyle }}>
                 <br></br><br></br>
                 <span className={flagClassName} style={styleCard}></span>
-                <h2 /*style={{"display": "inline-block"}} */>{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h2>
-                <Card.Header /*style={{"display": "inline"}}*/><h3 style={{"display": "inline"}}>Günlük Vakalar <br></br> {x.NewConfirmed}</h3></Card.Header>
-                <Card.Description /*style={{"display": "inline-block"}}*/>Toplam Vaka: {x.TotalConfirmed}</Card.Description>
-                <Card.Description /* style={{"display": "inline-block"}}*/>Günlük Ölüm: {x.NewDeaths}</Card.Description>
-                <Card.Description /*style={{"display": "inline-block"}}*/>Toplam Ölüm: {x.TotalDeaths}</Card.Description>
-                <Card.Description /*style={{"display": "inline-block"}}*/>Günlük İyileşenler: {x.NewRecovered}</Card.Description>
+                <h3 >{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h3>
+                <Card.Header ><h4 style={{"display": "inline"}}>Günlük Vakalar <br></br> {x.NewConfirmed}</h4></Card.Header>
+                <Card.Description textAlign="left">Toplam Vaka: {x.TotalConfirmed}</Card.Description>
+                <Card.Description textAlign="left">Günlük Ölüm: {x.NewDeaths}</Card.Description>
+                <Card.Description textAlign="left">Toplam Ölüm: {x.TotalDeaths}</Card.Description>
+                <Card.Description textAlign="left">Günlük İyileşenler: {x.NewRecovered}</Card.Description>
                 </Card.Content>
               </Card>
-              
-          //  </div>
-        //  </Grid.Column>
+        
         countryList.push(cnt)
 
-         }) }
-       
-
-    }
-
-
-    const listItems =
-      <Grid columns={4}>
-        <Grid.Row >
-
-          {
-
-            this.props.data.map(t => <Grid.Column><div>
-              
-              <Card  key={t.Country} style={{ width: "200px", height: "200px" ,display :"inline"}} >
-                <br></br><br></br>
-              <Card.Content style={{"float":"left"}} >
-                <span  className="flag-icon flag-icon-eu" style={styleCard}></span>
-                <h2>{t.Country != null || t.Country != undefined ? t.Country : "Dünya Geneli"}</h2>
-                <Card.Header><h3>Günlük Vakalar <br></br> {t.NewConfirmed}</h3></Card.Header>
-                <Card.Description>Toplam Vaka: {t.TotalConfirmed}</Card.Description>
-                <Card.Description >Günlük Ölüm: {t.NewDeaths}</Card.Description>
-                <Card.Description>Toplam Ölüm: {t.TotalDeaths}</Card.Description>
-                <Card.Description>Günlük İyileşenler: {t.NewRecovered}</Card.Description>
-                </Card.Content>
-              </Card>
-
-            </div></Grid.Column>)
-          }
-
-          <Grid.Column>
-
-          </Grid.Column>
-          <Grid.Column>
-
-          </Grid.Column>
-        </Grid.Row>
-
-      </Grid>
-
-/*
-         <Grid.Row columns={this.cardPerRow} style={{"display":"inline"}}>
-          <Grid.Column style={{"display": "inline-block"}}  key="1" >{countryList[0]}</Grid.Column>
-          <Grid.Column style={{"display": "inline-block"}} key="2">{countryList[1]}</Grid.Column>
-           </Grid.Row> 
-*/
+         }) 
         
-        // <Card.Group itemsPerRow="4"  /*style={{"display": "inline-block"}}*/>{countryList}</Card.Group>
-/*
- <Grid.Column style={{"display": "inline-block"}} key="3">{countryList[2]}</Grid.Column>
-          <Grid.Column style={{"display": "inline-block"}} key="4">{countryList[3]}</Grid.Column>
+         for(var x=0;x<countryList.length;x+=cardPerRow){
+           
+              let row = <Grid.Row  style={{"display": "inline-block"}}>
+                <Grid.Column  style={{"display": "inline-flex"}}>
+                {countryList.slice(x,Math.min(countryList.length,x+cardPerRow-1))}
 
-*/
-    return (
-      //{listItems}
-      
-       //<br></br><br></br><br></br><br></br><br></br>
+                </Grid.Column>
+                </Grid.Row>;
+              lastArray.push(row)
+         }
         
-          <Grid  >
-   
+         console.log(lastArray[-1])
+         console.log(lastArray.length)
          
+
+        }
+    }
+    
+    return (
+        /*  <Grid id="ASDASD" columns={{cardPerRow}} >
           {countryList.map(currentObject=>{
              let index=countryList.indexOf(currentObject)
-            if((index%cardPerRow)!=0){
-              return <Grid.Column style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>     
+            if(((index)%(cardPerRow))!=0){
+              return <Grid.Column width="4" style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>     
             }else{
-             return  <Grid.Row columns={this.cardPerRow} style={{"display":"inline"}}>
-              <Grid.Column style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>
+             return  <Grid.Row columns={this.cardPerRow} >
+              <Grid.Column width="4" style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>
               </Grid.Row>
             }
           }
            )}
+          </Grid>*/
 
-            
+          <Grid columns={cardPerRow}>
+            {lastArray.map(x=>{
+              return x;
+            })}
           </Grid>
-        
-
-      
      
     );
   }
 
 }
 
-/*
-
-     {countryList.forEach(x=>{
-          switch(countryList.indexOf(x)%4){
-            case 0: document.getElementById("column1").appendChild(x)
-                    break;
-            case 1: document.getElementById("column2").appendChild(x)
-                    break;
-            case 2: document.getElementById("column3").appendChild(x)
-                    break;
-            case 3: document.getElementById("column4").appendChild(x)
-            
-          }
-        })
-        
-        }
-
-
-*/

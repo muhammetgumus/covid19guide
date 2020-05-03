@@ -16,17 +16,11 @@ export default class PageContent extends React.Component {
     }
 
     render() {
-        // <CardComponent data={this.state.countriesData}></CardComponent>->
 
-                    //<CardComponent data={this.state.globalData} cardType="world"></CardComponent>
-                   // const xxx=               
-
-                        //<Card.Group stackable doubling itemsPerRow={"4"}>
-                        // </Card.Group>
 return (
            <div>
            <Container  style={{ margin: '30px' }}>
-                <h4 className="hashtag">#evdekal</h4>
+                <h2 className="hashtag">#evdekal #stayhome</h2>
                 <Navbar className="card-navbar"></Navbar>
                 <CardComponent  /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} cardType="countries"></CardComponent>
                </Container>
