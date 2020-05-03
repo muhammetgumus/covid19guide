@@ -22,7 +22,7 @@ return (
            <Container  style={{ margin: '30px' }}>
                 <h2 className="hashtag">#evdekal #stayhome</h2>
                 <Navbar className="card-navbar"></Navbar>
-                <CardComponent  /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} cardType="countries"></CardComponent>
+                <CardComponent  /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} date={this.state.date} cardType="countries"></CardComponent>
                </Container>
          </div>
 
