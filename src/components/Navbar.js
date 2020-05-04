@@ -1,5 +1,6 @@
 import React from 'react';
 import { getSummaryData } from '../service/MainService.js'
+import{Dropdown} from 'semantic-ui-react'
 
 
 class Navbar extends React.Component {
@@ -11,7 +12,7 @@ return (
         <div id="navbar">
             <select id="countries">
             </select>
-
+            <Dropdown></Dropdown>
         </div>
     );
 

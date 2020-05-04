@@ -115,20 +115,7 @@ export default class CardComponent extends React.Component {
     }
     
     return (
-        /*  <Grid id="ASDASD" columns={{cardPerRow}} >
-          {countryList.map(currentObject=>{
-             let index=countryList.indexOf(currentObject)
-            if(((index)%(cardPerRow))!=0){
-              return <Grid.Column width="4" style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>     
-            }else{
-             return  <Grid.Row columns={this.cardPerRow} >
-              <Grid.Column width="4" style={{"display": "inline-block"}}  key={index} >{currentObject}</Grid.Column>
-              </Grid.Row>
-            }
-          }
-           )}
-          </Grid>*/
-
+      
           <Grid columns={cardPerRow}>
             {lastArray.map(x=>{
               return x;

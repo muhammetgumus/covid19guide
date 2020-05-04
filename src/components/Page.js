@@ -11,7 +11,6 @@ export default class Page extends React.Component{
 
         return(
             <div>
-                
                 <PageContent/>
             </div>
         )
