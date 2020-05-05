@@ -21,7 +21,6 @@ export default class PageContent extends React.Component {
 return (
            <div>
            <Container  style={{ margin: '30px' }}>
-                <h2 className="hashtag">#evdekal #stayhome</h2>
                 <Navbar className="card-navbar"></Navbar>
                 <CardComponent className="cardComponent" /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} date={this.state.date} cardType="countries"></CardComponent>
                </Container>
