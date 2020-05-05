@@ -40,7 +40,14 @@ margin: 15px;
 .App-link {
   color: #61dafb;
 }
+.searchbar {
+  
+  background-color: darkseagreen;
+  width: "1000px";
+  border-bottom-left-radius: 8px;
+  border-radius: 8px;
 
+}
 
 .cardComponent{
   margin-top: 25px;
