@@ -17,9 +17,9 @@ export default class CardComponent extends React.Component {
       "height": "60px",
       "flag-icon-background": {
 
-        "background-size": "contain",
-        "background-position": "50%",
-        "background-repeat": "no-repeat"
+        //"background-size": "contain",
+        //"background-position": "50%",
+        //"background-repeat": "no-repeat"
       }
      
     }

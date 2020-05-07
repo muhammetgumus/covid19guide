@@ -12,40 +12,47 @@ class Navbar extends React.Component {
             searchbarArr: []
         };
         this.handleSearch = this.handleSearch.bind(this);
+       // this.handleBodyClick =this.handleBodyClick.bind(this);
     }
-
+/*handleBodyClick(event){
+    document.getElementsByName("body").addEventListener('click',()=>{document.getElementById('container').innerHTML=''})
+}*/
     handleSearch(event) {
         let totalResult=0;
         let searchbar = document.getElementById('searchbar')
         let container = document.createElement('div');
+        container.id="searchResultsContainer"
+        container.style.position="relative"
+        container.style.zIndex="100"
 
-        if(document.getElementById("unorderedList")!=null){
-            document.getElementById("unorderedList").remove()
+        if(document.getElementById("searchResults")!=null){
+            document.getElementById("searchResults").remove()
         }
-        let listElement = document.createElement('ul');
-        listElement.id="unorderedList"
-        listElement.innerHTML=''
+        let tableElement = document.createElement('table');
+        tableElement.id="searchResults"
+        tableElement.innerHTML=''
 
             container.innerHTML='';
        
         if (this.state.searchbarArr.length >= 1) {
+            
             for (let x of this.state.searchbarArr) {
-                if (x.includes(event.target.value)) {
-                    
-                    let listItem = document.createElement('li');
-                    listItem.id = Math.ceil(Math.random() * 100)
-                    listItem.textContent = x;
-                    listItem.value = x;
-                    listItem.title = x;
-                    
-                    
-                    listElement.appendChild(listItem);
-                    container.appendChild(listElement)
+                if (x.toLowerCase().includes(event.target.value.toLowerCase())) {
+                    if(totalResult!=5){
+                    let tableRow = document.createElement('tr');
+                    let tableData = document.createElement('td');
+                    tableData.id = Math.ceil(Math.random() * 100)
+                    tableData.textContent = x;
+                    tableData.value = x;
+                    tableData.title = x;
+                    //tableData.style={backrogundColor:"red"}
+
+                    tableRow.appendChild(tableData)
+                    tableElement.appendChild(tableRow);
+                    container.appendChild(tableElement)
                     searchbar.after(container);
                     totalResult++
-                
-                    
-            
+                }
                 }
             }
 
@@ -92,7 +99,7 @@ class Navbar extends React.Component {
                     
                     clearInterval(isArrived)
                 }
-            }, 20000)
+            }, 500)
 
         })
 
@@ -100,6 +107,6 @@ class Navbar extends React.Component {
 
     componentDidMount() {
         this.getCountriesFunc();
-    }
+       }
 }
 export default Navbar;
