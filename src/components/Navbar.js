@@ -84,14 +84,7 @@ class Navbar extends React.Component {
                     
                     let tempArr=[]
                     countriesData.forEach(country => {
-
                         tempArr.push(country.label);
-
-                        /*let option = document.createElement('option')
-                        option.text = country.label
-                        option.name = country.value
-                        selection.appendChild(option);*/
-
                     })
                         this.setState({
                             searchbarArr: [...tempArr]

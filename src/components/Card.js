@@ -7,8 +7,13 @@ import '../App.css'
 export default class CardComponent extends React.Component {
   constructor(props) {
     super(props)
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
-  onMouseEnter(x){}
+ handleCardClick(event){
+  const x= event.target.value;
+  console.log(x);
+   console.log("CLICKED: "+ event);
+ }
   render() {
     const cardPerRow=5;
     const styleCard = {
@@ -16,10 +21,6 @@ export default class CardComponent extends React.Component {
       "width": "100px",
       "height": "60px",
       "flag-icon-background": {
-
-        //"background-size": "contain",
-        //"background-position": "50%",
-        //"background-repeat": "no-repeat"
       }
      
     }
@@ -68,18 +69,13 @@ export default class CardComponent extends React.Component {
             "margin": "10px 5px",
             "padding": "4px",//, 
             "&:hover":{
-              //'box-shadow': '0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23)'
               backgroundColor:"red"
             }
-            //"box-shadow": "0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23)"
-                
-           // "box-shadow": "0 4px 8px 0 rgba(0,0,0,3)",
-            //"transition": "0.9s"
-           
+         
           }
           let cnt = 
-              <Card  key={x.CountryCode} /*style={lastStyle2}  */>
-                <Card.Content className="cardExample" /*style={lastStyle2}*/>
+              <Card  key={x.CountryCode}  name={x.CountryCode} value={x.CountryCode}   onClick={this.handleCardClick} >
+                <Card.Content className="cardExample" name={x.CountryCode} value={x.CountryCode}   /*style={lastStyle2}*/>
                 <br></br><br></br>
                 <span className={flagClassName} style={styleCard}></span>
                 <h3 >{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h3>
