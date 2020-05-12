@@ -6,45 +6,55 @@ export class CountryPopup extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          Country='',
-          CountryCode='',
-          Lat=0,
-          Lon=0,
-          Cases=0
+          Country:'',
+          CountryCode:'',
+          Lat:0,
+          Lon:0,
+          Cases:0,
+          map:null
         };
       }
 
 render(){
+ // const countryPopupData = getSummaryByCountry(this.props.countryCode);
+  
+  /*  this.setState({
+      Lon:countryPopupData.Lon,
+      Lat:countryPopupData.Lat,
+      country:countryPopupData.Country
+     // countryCode:this.props.CountryCode,
+    })
+*/
+  this.renderMap()
     return(
       <div>
-        {this.renderMap()}
-        <h6>Country : {this.state.Country}</h6>
-        <h6>CountryCode : {this.state.CountryCode}</h6>
-        <h6>Latitude : {this.state.Lat}</h6>
-        <h6>Longitude : {this.state.Lon}</h6>
-        <h6>Cases: {this.state.Cases}</h6>
+        <div>{this.state.map}</div>
+        <h6>Country : {this.props.data.Country}</h6>
+        <h6>CountryCode : {this.props.data.CountryCode}</h6>
+        <h6>Latitude : {this.props.data.Lat}</h6>
+        <h6>Longitude : {this.props.data.Lon}</h6>
+        <h6>Cases: {this.props.data.Cases}</h6>
       </div>
     )
 }
     
 componentDidMount(){
-  const countryPopupData = getSummaryByCountry(this.props.CountryCode)
-  this.setState({
-    Log:countryPopupData.Log,
-    Lat:countryPopupData.Lat,
-    Country:countryPopupData.Country,
-    CountryCode:countryPopupData.CountryCode,
-  }) 
+  
+   
 }
 
 renderMap(){
 let mapContainer=document.createElement('div');
-return ymaps.load()
+const map= ymaps.load()
   .then(maps => {
     const map = new maps.Map(mapContainer, {
-      center: [this.state.Lat, this.state.Lon],
+      center: [this.props.data.Lat, this.props.data.Lon],
       zoom: 3
     });
+    this.setState({
+      map:mapContainer.innerHTML
+    })
+    //return map
   })
   .catch(error => console.log('Failed to load Yandex Maps', error));
 

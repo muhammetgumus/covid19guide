@@ -35,27 +35,30 @@ export function getSummaryData() {
 
 }
 export async function getCoordinates(countryCode) {
-    let result = await fetch(`https://api.covid19api.com/dayone/country/tr/status/confirmed`)
+    let result = await fetch(`https://api.covid19api.com/dayone/country/${countryCode}/status/confirmed`)
     let country = await result.json()
     country = await country[0];
-    return { "Log": country.Log, "Lat": country.Lat }
+    return { "Lon": country.Lon, "Lat": country.Lat }
 
 }
 
 export  async function getSummaryByCountry(countryCode) {
-    const coordinates = await getCoordinates(countryCode);
-    const country = await fetch(`https://api.covid19api.com/total/country/${countryCode}/status/confirmed`)
-    const response = await country.json();
-    const countryResult = {
-        "Country": response[0].Country,
-        "CountryCode": response[0].Country,
-        "Lat": coordinates.Lat,
-        "Lon": coordinates.Log,
-        "Cases": response[response.length() - 1].Cases,
-        "Status": "confirmed",
-        "Date": response[response.length() - 1].Date
-    }
+    
+        const coordinates = await getCoordinates(countryCode);
+        const country = await fetch(`https://api.covid19api.com/total/country/${countryCode}/status/confirmed`)
+        const response = await country.json();
+        const countryResult = {
+            "Country": response[0].Country,
+            "CountryCode": response[0].Country,
+            "Lat": coordinates.Lat,
+            "Lon": coordinates.Lon,
+            "Cases": response[response.length - 1].Cases,
+            "Status": "confirmed",
+            "Date": response[response.length - 1].Date
+        }
+        return countryResult
 
+    
 
 }
 

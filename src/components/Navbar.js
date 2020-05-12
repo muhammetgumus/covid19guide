@@ -64,11 +64,14 @@ class Navbar extends React.Component {
         }
 
     }
+
+   
+
     render() {
         let curr = this.state.currentDate;
         return (
             <div className="card-navbar">
-                <div className="clock">{
+                <div className="clock" >{
                     curr
                 }</div>
                 <h5 className="hashtag">#evdekal #stayhome</h5>
