@@ -132,6 +132,8 @@ text-align: right;
   background-color: rgba(0,0,0, 0.5);
   display: inline-block;
   align-items: center;
+  
+
 }
 
 .popup-content{
@@ -146,6 +148,7 @@ text-align: right;
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
+  filter:blur(2000px);
   vertical-align: middle  ;
 
 }
@@ -171,6 +174,7 @@ text-align: right;
   margin-left: auto;
   margin-right: auto;
   width: 600px;
+  color: white;
 }
 .innerMap{
   margin-left: auto;

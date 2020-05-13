@@ -127,7 +127,7 @@ export default class CardComponent extends React.Component {
             }
 
           }
-          //<Card.Header ><h4 style={{"display": "inline"}}>Günlük Vakalar <br></br> {x.NewConfirmed}</h4></Card.Header>
+          
           let cnt =
             <Card key={x.CountryCode} name={x.CountryCode} value={x.CountryCode}    >
               <Card.Content key={x.CountryCode} className="cardExample" name={x.CountryCode} value={x.CountryCode} onClick={this.handleCardClick.bind(this)}  /*onClick={this.handleCardClick2.bind(this)}*/>

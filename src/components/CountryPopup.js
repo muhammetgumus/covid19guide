@@ -3,6 +3,7 @@ import ymaps from 'ymaps';
 import { getSummaryByCountry } from '../service/MainService.js'
 export class CountryPopup extends React.Component{
   
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -14,20 +15,23 @@ export class CountryPopup extends React.Component{
       map:null
     };
     this.mapFunc = this.mapFunc.bind(this);
+    this.handlePopupContainerClick= this.handlePopupContainerClick.bind(this);
   }
-  
+  handlePopupContainerClick(){
+    document.getElementById("popupContainer").style.display="none"
+  }
   
   render(){
     return(
-      <div className="outer"  >
+      <div className="outer" id="popupContainer" onClick={this.handlePopupContainerClick} >
       <div className="middle">
         <div id="mapX" className="innerMap" ></div>
         <div className="inner">
-        <h6>Country : {this.props.data.Country}</h6>
-        <h6>CountryCode : {this.props.data.CountryCode}</h6>
-        <h6>Latitude : {this.props.data.Lat}</h6>
-        <h6>Longitude : {this.props.data.Lon}</h6>
-        <h6>Cases: {this.props.data.Cases}</h6>
+        <h4>Country : {this.props.data.Country}</h4>
+        <h4>CountryCode : {this.props.data.CountryCode}</h4>
+        <h4>Latitude : {this.props.data.Lat}</h4>
+        <h4>Longitude : {this.props.data.Lon}</h4>
+        <h4>Cases: {this.props.data.Cases}</h4>
         </div>
 
         </div>
