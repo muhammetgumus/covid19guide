@@ -13,6 +13,7 @@ export class CountryPopup extends React.Component{
           Cases:0,
           map:null
         };
+        this.mapFunc = this.mapFunc.bind(this);
       }
 
 render(){
@@ -25,10 +26,10 @@ render(){
      // countryCode:this.props.CountryCode,
     })
 */
-  this.renderMap()
+ // this.renderMap()
     return(
-      <div>
-        <div>{this.state.map}</div>
+      <div style={{align:"center"}} className="popup" >
+        <div id="mapX" ></div>
         <h6>Country : {this.props.data.Country}</h6>
         <h6>CountryCode : {this.props.data.CountryCode}</h6>
         <h6>Latitude : {this.props.data.Lat}</h6>
@@ -39,12 +40,13 @@ render(){
 }
     
 componentDidMount(){
-  
+  this.mapFunc();
    
 }
-
+/*
 renderMap(){
 let mapContainer=document.createElement('div');
+let container= document.getElementById('mapX');
 const map= ymaps.load()
   .then(maps => {
     const map = new maps.Map(mapContainer, {
@@ -61,10 +63,25 @@ const map= ymaps.load()
 
 
 }
+*/
 
 
-
-
-
+mapFunc(){
+  let con= document.createElement('div');
+  con.id="mapY"
+  con.className="popup"
+  document.getElementById("mapX").append(con);
+  ymaps
+  .load()
+  .then(maps => {
+    const map = new maps.Map(con, {
+      center: [this.props.data.Lat, this.props.data.Lon],
+      zoom: 5
+    });
+  })
+  .catch(error => console.log('Failed to load Yandex Maps', error));
 
 }
+
+}
+

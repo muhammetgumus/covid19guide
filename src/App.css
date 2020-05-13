@@ -131,6 +131,34 @@ text-align: right;
   background-color: rgba(0,0,0, 0.5);
 }
 
+.popup-content{
+
+  position: relative;
+  width:  600px;
+  height: 400px;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+
+}
+
+#mapX{
+  width: 600px;
+  height: 400px;
+  
+}
+
+
+#mapY{
+  position: absolute;
+  width: 600px;
+  height: 400px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
