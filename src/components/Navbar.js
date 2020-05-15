@@ -14,11 +14,15 @@ class Navbar extends React.Component {
             currentDate: ''
         };
         this.handleSearch = this.handleSearch.bind(this);
+        this.resultClick = this.resultClick.bind(this);
         // this.handleBodyClick =this.handleBodyClick.bind(this);
     }
-    /*handleBodyClick(event){
-        document.getElementsByName("body").addEventListener('click',()=>{document.getElementById('container').innerHTML=''})
-    }*/
+    resultClick(event){
+        document.getElementsByName(event.target.value)[0].scrollIntoView({behavior:"smooth"})
+//        document.getElementById(event.target.id).scrollIntoView()
+    }
+
+
     handleSearch(event) {
         let totalResult = 0;
         let searchbar = document.getElementById('searchbar')
@@ -33,22 +37,21 @@ class Navbar extends React.Component {
         let tableElement = document.createElement('table');
         tableElement.id = "searchResults"
         tableElement.innerHTML = ''
-
         container.innerHTML = '';
 
         if (this.state.searchbarArr.length >= 1) {
 
-            for (let x of this.state.searchbarArr) {
-                if (x.toLowerCase().includes(event.target.value.toLowerCase())) {
+            for (let element of this.state.searchbarArr) {
+                if (element["label"].toLowerCase().includes(event.target.value.toLowerCase())) {
                     if (totalResult != 5) {
                         let tableRow = document.createElement('tr');
                         let tableData = document.createElement('td');
                         tableData.id = Math.ceil(Math.random() * 100)
-                        tableData.textContent = x;
-                        tableData.value = x;
-                        tableData.title = x;
-                        //tableData.style={backrogundColor:"red"}
-
+                        tableData.textContent = element.label;
+                        tableData.value = element.label;
+                        tableData.title = element.value;
+                        tableData.onclick=()=>{this.resultClick(tableData);}
+                        //tableData.setAttribute('onclick',"resultClick('" + this + "')");
                         tableRow.appendChild(tableData)
                         tableElement.appendChild(tableRow);
                         container.appendChild(tableElement)
@@ -92,13 +95,15 @@ class Navbar extends React.Component {
                 if (countriesData !== undefined) {
 
                     let tempArr = []
-                    countriesData.forEach(country => {
+                  /*  countriesData.forEach(country => {
                         tempArr.push(country.label);
-                    })
+                    })*/
+                    tempArr=[...countriesData]
                     this.setState({
                         searchbarArr: [...tempArr]
                     })
 
+                    console.log(this.state.searchbarArr);
                     clearInterval(isArrived)
                 }
             }, 500)

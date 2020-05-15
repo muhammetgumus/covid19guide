@@ -33,7 +33,6 @@ export class CountryPopup extends React.Component{
         <h4>Longitude : {this.props.data.Lon}</h4>
         <h4>Cases: {this.props.data.Cases}</h4>
         </div>
-
         </div>
       </div>
     )
