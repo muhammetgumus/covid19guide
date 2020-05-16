@@ -15,11 +15,11 @@ class Navbar extends React.Component {
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.resultClick = this.resultClick.bind(this);
-        // this.handleBodyClick =this.handleBodyClick.bind(this);
+
     }
-    resultClick(event){
-        document.getElementsByName(event.target.value)[0].scrollIntoView({behavior:"smooth"})
-//        document.getElementById(event.target.id).scrollIntoView()
+    resultClick(event) {
+        document.getElementsByName(event.title.toString())[0].scrollIntoView({ behavior: "smooth" })
+        document.getElementById("searchResultsContainer").innerHTML=''
     }
 
 
@@ -30,7 +30,6 @@ class Navbar extends React.Component {
         container.id = "searchResultsContainer"
         container.style.position = "relative"
         container.style.zIndex = "100"
-
         if (document.getElementById("searchResults") != null) {
             document.getElementById("searchResults").remove()
         }
@@ -40,7 +39,6 @@ class Navbar extends React.Component {
         container.innerHTML = '';
 
         if (this.state.searchbarArr.length >= 1) {
-
             for (let element of this.state.searchbarArr) {
                 if (element["label"].toLowerCase().includes(event.target.value.toLowerCase())) {
                     if (totalResult != 5) {
@@ -50,8 +48,7 @@ class Navbar extends React.Component {
                         tableData.textContent = element.label;
                         tableData.value = element.label;
                         tableData.title = element.value;
-                        tableData.onclick=()=>{this.resultClick(tableData);}
-                        //tableData.setAttribute('onclick',"resultClick('" + this + "')");
+                        tableData.onclick = () => { this.resultClick(tableData); }
                         tableRow.appendChild(tableData)
                         tableElement.appendChild(tableRow);
                         container.appendChild(tableElement)
@@ -60,50 +57,34 @@ class Navbar extends React.Component {
                     }
                 }
             }
-
         }
         if (event.target.value == "" || event.target.value == null) {
             container.innerHTML = ''
         }
-
     }
 
-   
-
     render() {
-        let curr = this.state.currentDate;
+        let currentDate = this.state.currentDate;
         return (
             <div className="card-navbar">
-                <div className="clock" >{
-                    curr
-                }</div>
+                <div className="clock" >{currentDate}</div>
                 <h5 className="hashtag">#evdekal #stayhome</h5>
                 <input type="text" className="searchbar" placeholder="Search the country" id="searchbar" onChange={this.handleSearch}></input>
             </div>
         );
-
-
     }
-
 
     getCountriesFunc() {
         const countries = getSummaryData();
         countries.then((countriesData) => {
-
-            console.log(countriesData);
             const isArrived = setInterval(() => {
                 if (countriesData !== undefined) {
 
                     let tempArr = []
-                  /*  countriesData.forEach(country => {
-                        tempArr.push(country.label);
-                    })*/
-                    tempArr=[...countriesData]
+                    tempArr = [...countriesData]
                     this.setState({
                         searchbarArr: [...tempArr]
                     })
-
-                    console.log(this.state.searchbarArr);
                     clearInterval(isArrived)
                 }
             }, 500)

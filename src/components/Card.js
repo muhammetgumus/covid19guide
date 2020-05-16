@@ -15,58 +15,44 @@ export default class CardComponent extends React.Component {
       popupData: {
         Log: '',
         Lon: '',
-        CountryCode: ''
+        CountryCode: '',
+        Cases:''
 
       }
     }
     this.handleCardClick = this.handleCardClick.bind(this);
-    this.handleCardClick2 = this.handleCardClick2.bind(this);
     this.resetCurrentCountryCode = this.resetCurrentCountryCode.bind(this);
   }
   handleCardClick(event) {
-    // event.preventDefault()
+
     event.persist()
 
     if (event.target.parentElement.getAttribute("value") != null) {
       this.resetCurrentCountryCode();
       const countryCode = event.target.parentElement.getAttribute("value").toLowerCase();//.attributes.nodeValue
       getSummaryByCountry(countryCode).then((response) => {
-        if(response !=undefined){
+        if (response != undefined) {
           this.setState({
-            currentCountryCode: countryCode,
+            currentCountryCode: response.CountryCode,
             popupData: {
               Lat: response.Lat,
               Lon: response.Lon,
-              CountryCode:response.CountryCode
+              CountryCode: response.CountryCode,
+              Cases:response.Cases,
+              Country:response.Country
             }
           })
         }
-        
-
       })
-
-      console.log(countryCode.toString());
-      console.log("CARD CLICKED: " + event);
-      console.log(event)
-
     }
 
-    // event.stopPropagation()
   }
   resetCurrentCountryCode() {
     this.setState({
       currentCountryCode: null
     })
   }
-  handleCardClick2(event) {
-    // event.preventDefault()
-    event.persist()
 
-    const x = event.target.parentElement.value.toLowerCase();
-    console.log("TARGET VALUE : " + x);
-    console.log("CARD CONTENT CLICKED");
-    console.log("CLICKED: " + event);
-  }
 
   render() {
     const cardPerRow = 5;
@@ -76,61 +62,19 @@ export default class CardComponent extends React.Component {
       "height": "60px",
       "flag-icon-background": {
       }
-
     }
 
     let countryList = []
     let lastArray = []
-    const lastStyle = {
-
-      "maxWidth": "200px",
-      "height": "300px",
-      //"display" :"inline-block",
-      "margin": "200px",
-      "box-shadow": "0 4px 8px 0 rgba(0,0,0,111)",
-      "transition": "0.3s"
-
-    }
+ 
     if (this.props.cardType == "countries") {
       if (this.props.data != null && this.props.data != undefined && this.props.data.length != 0) {
 
         let countriesLst = this.props.data[0].map(x => {
           let flagClassName = "flag-icon flag-icon-" + x.CountryCode.toLowerCase()
-          const lastStyle = {
-
-            "width": "275px",
-            "height": "320px",
-            "display": "inline-block",
-            "margin": "20px",
-            "border": "1px solid #ccc",
-            "border-radius": "5px",
-            "margin": "10px 5px",
-            "padding": "4px",
-            "box-shadow": "0 10px 20px rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23)",
-
-            "box-shadow": "0 4px 8px 0 rgba(0,0,0,3)",
-            "transition": "0.9s"
-
-          }
-          const lastStyle2 = {
-
-            "width": "275px",
-            "height": "320px",
-            "display": "inline-block",
-            "margin": "20px",
-            "border": "1px solid #ccc",
-            "border-radius": "20px",
-            "margin": "10px 5px",
-            "padding": "4px",//, 
-            "&:hover": {
-              backgroundColor: "red"
-            }
-
-          }
-          
           let cnt =
             <Card key={x.CountryCode} name={x.CountryCode} value={x.CountryCode} id={x.CountryCode}>
-              <Card.Content key={x.CountryCode} className="cardExample" name={x.CountryCode} value={x.CountryCode} onClick={this.handleCardClick.bind(this)}  /*onClick={this.handleCardClick2.bind(this)}*/>
+              <Card.Content key={x.CountryCode} className="cardExample" name={x.CountryCode} value={x.CountryCode} onClick={this.handleCardClick.bind(this)}>
                 <br></br><br></br>
                 <span className={flagClassName} style={styleCard}></span>
                 <h3 >{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h3>
@@ -157,11 +101,6 @@ export default class CardComponent extends React.Component {
           </Grid.Row>;
           lastArray.push(row)
         }
-
-        console.log(lastArray[-1])
-        console.log(lastArray.length)
-
-
       }
     }
 
@@ -173,7 +112,6 @@ export default class CardComponent extends React.Component {
           })}
         </Grid>
         {
-
           this.state.currentCountryCode && (
             <div>
               <CountryPopup data={this.state.popupData} className="popup" countryCode={this.state.currentCountryCode} ></CountryPopup>
@@ -181,8 +119,6 @@ export default class CardComponent extends React.Component {
           )
         }
       </div>
-
-
     );
   }
   componentDidMount() {
@@ -190,7 +126,7 @@ export default class CardComponent extends React.Component {
 
   }
   componentWillUnmount() {
-    this.state.currentCountryCode=null;
+    this.state.currentCountryCode = null;
   }
 }
 

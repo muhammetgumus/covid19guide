@@ -25,9 +25,7 @@ return (
                 <CardComponent className="cardComponent" /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} date={this.state.date} cardType="countries"></CardComponent>
                </Container>
          </div>
-
         )
-
     }
 
     componentDidMount() {
@@ -35,21 +33,12 @@ return (
         datas.then((incoming) => {
             const globalData = incoming['Global']
             const countriesData = incoming['Countries']
-            //countriesData= JSON.parse(countriesData);
             const date = incoming['Date']
             this.setState({
                 globalData: [...this.state.globalData, globalData],
                 countriesData: [...this.state.countriesData, countriesData],
                 date: [...this.state.date, date]
-
             })
-
         })
-
-
-
     }
-
-
-
 }

@@ -25,12 +25,7 @@ export function getSummaryData() {
             })
             return availableCountries;
         })
-        .then(availableCountries => {
-            console.log("AVAILABLE COUNTRIES")
-            console.log(availableCountries)
-            return availableCountries;
 
-        })
     return result;
 
 }
@@ -49,7 +44,7 @@ export  async function getSummaryByCountry(countryCode) {
         const response = await country.json();
         const countryResult = {
             "Country": response[0].Country,
-            "CountryCode": response[0].Country,
+            "CountryCode": countryCode,
             "Lat": coordinates.Lat,
             "Lon": coordinates.Lon,
             "Cases": response[response.length - 1].Cases,
@@ -57,9 +52,6 @@ export  async function getSummaryByCountry(countryCode) {
             "Date": response[response.length - 1].Date
         }
         return countryResult
-
-    
-
 }
 
 
@@ -68,6 +60,4 @@ export default async function summaryData() {
     const json = await result.json();
     const finalResult = await json;
     return finalResult;
-
 }
-
