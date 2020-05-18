@@ -20,7 +20,7 @@ export default class PageContent extends React.Component {
 
 return (
            <div>
-           <Container  style={{ margin: '30px' }}>
+           <Container className="App"  style={{ margin: '30px' }}>
                 <Navbar className="card-navbar"></Navbar>
                 <CardComponent className="cardComponent" /*style={{"display":"inline-block"}}*/ data={this.state.countriesData} date={this.state.date} cardType="countries"></CardComponent>
                </Container>

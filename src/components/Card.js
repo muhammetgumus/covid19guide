@@ -93,8 +93,8 @@ export default class CardComponent extends React.Component {
 
         for (var x = 0; x < countryList.length; x += cardPerRow) {
 
-          let row = <Grid.Row style={{ "display": "inline-block" }}>
-            <Grid.Column style={{ "display": "inline-flex" }}>
+          let row = <Grid.Row style={{"display": "inline-flex"/*,"transform": "scale(0.8, 0.8)"*/ }}>
+            <Grid.Column style={{ "display": "inline-flex"/*,"transform": "scale(0.8, 0.8)"*/ }}>
               {countryList.slice(x, Math.min(countryList.length, x + cardPerRow))}
 
             </Grid.Column>

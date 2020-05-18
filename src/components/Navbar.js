@@ -15,16 +15,37 @@ class Navbar extends React.Component {
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.resultClick = this.resultClick.bind(this);
+      //  this.styleNavbar = this.styleNavbar.bind(this);
 
     }
     resultClick(event) {
         document.getElementsByName(event.title.toString())[0].scrollIntoView({ behavior: "smooth" })
-        document.getElementById("searchResultsContainer").innerHTML=''
+        document.getElementById("searchResultsContainer").innerHTML = ''
     }
 
+   /* styleNavbar(event) {
+        if (event.target.value != null) {
+            event.target.placeholder = 'Search Country'
+            event.target.style.outline = '0';
+            event.target.style.borderColor = 'rgb(21, 137, 238)';
+            event.target.style.backgroundColor = 'rgb(255, 255, 255)';
+            event.target.style.boxShadow = '0 0 3px #0070d2'
+        }else{
+            event.target.className='searchbar'
+        }*/
+        // event.target.style.outline= 0;
+        /*event.target.style={
+            outline: 0,
+            borderColor: 'rgb(21, 137, 238)',
+            backgroundColor: 'rgb(255, 255, 255)',
+            boxShadow: '0 0 3px #0070d2' 
+        }
+
+    }*/
 
     handleSearch(event) {
         let totalResult = 0;
+        //event.target.placeholder=''
         let searchbar = document.getElementById('searchbar')
         let container = document.createElement('div');
         container.id = "searchResultsContainer"
@@ -69,7 +90,7 @@ class Navbar extends React.Component {
             <div className="card-navbar">
                 <div className="clock" >{currentDate}</div>
                 <h5 className="hashtag">#evdekal #stayhome</h5>
-                <input type="text" className="searchbar" placeholder="Search the country" id="searchbar" onChange={this.handleSearch}></input>
+                <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder="Search Country" id="searchbar" onChange={this.handleSearch}></input>
             </div>
         );
     }
