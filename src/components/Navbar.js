@@ -15,7 +15,6 @@ class Navbar extends React.Component {
         };
         this.handleSearch = this.handleSearch.bind(this);
         this.resultClick = this.resultClick.bind(this);
-      //  this.styleNavbar = this.styleNavbar.bind(this);
 
     }
     resultClick(event) {
@@ -23,36 +22,18 @@ class Navbar extends React.Component {
         document.getElementById("searchResultsContainer").innerHTML = ''
     }
 
-   /* styleNavbar(event) {
-        if (event.target.value != null) {
-            event.target.placeholder = 'Search Country'
-            event.target.style.outline = '0';
-            event.target.style.borderColor = 'rgb(21, 137, 238)';
-            event.target.style.backgroundColor = 'rgb(255, 255, 255)';
-            event.target.style.boxShadow = '0 0 3px #0070d2'
-        }else{
-            event.target.className='searchbar'
-        }*/
-        // event.target.style.outline= 0;
-        /*event.target.style={
-            outline: 0,
-            borderColor: 'rgb(21, 137, 238)',
-            backgroundColor: 'rgb(255, 255, 255)',
-            boxShadow: '0 0 3px #0070d2' 
-        }
-
-    }*/
 
     handleSearch(event) {
         let totalResult = 0;
-        //event.target.placeholder=''
         let searchbar = document.getElementById('searchbar')
         let container = document.createElement('div');
         container.id = "searchResultsContainer"
         container.style.position = "relative"
+        container.style.width = "75%"
+        container.style.display = "inline-block"
         container.style.zIndex = "100"
         if (document.getElementById("searchResults") != null) {
-            document.getElementById("searchResults").remove()
+            document.getElementById("searchResultsContainer").remove()
         }
         let tableElement = document.createElement('table');
         tableElement.id = "searchResults"
@@ -81,6 +62,9 @@ class Navbar extends React.Component {
         }
         if (event.target.value == "" || event.target.value == null) {
             container.innerHTML = ''
+            while(document.getElementById("searchResultsContainer")!=null){
+                document.getElementById("searchResultsContainer").remove()
+            }
         }
     }
 
