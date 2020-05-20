@@ -76,7 +76,7 @@ export default class CardComponent extends React.Component {
             <Card key={x.CountryCode} name={x.CountryCode} value={x.CountryCode} id={x.CountryCode}>
               <Card.Content key={x.CountryCode} className="cardExample" name={x.CountryCode} value={x.CountryCode} onClick={this.handleCardClick.bind(this)}>
                 <br></br><br></br>
-                <span className={flagClassName} style={styleCard}></span>
+                <span style={{zIndex:"0"}} className={flagClassName} style={styleCard}></span>
                 <h3 >{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h3>
                 <Card.Header style={{ "fontWeight": "bold" }} >Günlük Vakalar : {x.NewConfirmed}</Card.Header>
                 <Card.Description textAlign="left">Toplam Vaka: {x.TotalConfirmed}</Card.Description>

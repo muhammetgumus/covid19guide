@@ -25,6 +25,7 @@ class Navbar extends React.Component {
 
     handleSearch(event) {
         let totalResult = 0;
+        //event.target.placeholder=''
         let searchbar = document.getElementById('searchbar')
         let container = document.createElement('div');
         container.id = "searchResultsContainer"
@@ -71,7 +72,7 @@ class Navbar extends React.Component {
     render() {
         let currentDate = this.state.currentDate;
         return (
-            <div className="card-navbar">
+            <div>
                 <div className="clock" >{currentDate}</div>
                 <h5 className="hashtag">#evdekal #stayhome</h5>
                 <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder="Search Country" id="searchbar" onChange={this.handleSearch}></input>
