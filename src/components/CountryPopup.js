@@ -1,5 +1,6 @@
 import React from 'react';
 import ymaps from 'ymaps';
+import { words } from '../static/Internalization';
 export class CountryPopup extends React.Component{
   
   
@@ -14,16 +15,17 @@ export class CountryPopup extends React.Component{
   }
 
   render(){
+    let wordList = words[this.props.lang]
     return(
       <div className="outer" id="popupContainer" onClick={this.handlePopupContainerClick} >
       <div className="middle">
         <div id="mapX" className="innerMap" ></div>
         <div className="inner">
-        <h4>Country : {this.props.data.Country}</h4>
-        <h4>CountryCode : {this.props.data.CountryCode.toUpperCase()}</h4>
-        <h4>Latitude : {this.props.data.Lat}</h4>
-        <h4>Longitude : {this.props.data.Lon}</h4>
-        <h4>Cases: {this.props.data.Cases}</h4>
+        <h4>{wordList.Country} : {this.props.data.Country}</h4>
+        <h4>{wordList.CountryCode} : {this.props.data.CountryCode.toUpperCase()}</h4>
+        <h4>{wordList.Latitude} : {this.props.data.Lat}</h4>
+        <h4>{wordList.Longitude} : {this.props.data.Lon}</h4>
+        <h4>{wordList.Cases} : {this.props.data.Cases}</h4>
         </div>
         </div>
       </div>

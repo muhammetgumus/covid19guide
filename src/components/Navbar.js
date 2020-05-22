@@ -2,6 +2,7 @@ import React from 'react';
 import { getSummaryData } from '../service/MainService.js'
 import { Select } from 'semantic-ui-react'
 import { getCurrentDate } from '../utils/Utility.js'
+import {words} from '../static/Internalization'
 import '../App.css';
 
 
@@ -71,11 +72,12 @@ class Navbar extends React.Component {
 
     render() {
         let currentDate = this.state.currentDate;
+        let wordList= words[this.props.lang];
         return (
             <div>
                 <div className="clock" >{currentDate}</div>
-                <h5 className="hashtag">#evdekal #stayhome</h5>
-                <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder="Search Country" id="searchbar" onChange={this.handleSearch}></input>
+                <h5 className="hashtag">{wordList.stayHome}</h5>
+                <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder={wordList.placeHolder} id="searchbar" onChange={this.handleSearch}></input>
             </div>
         );
     }

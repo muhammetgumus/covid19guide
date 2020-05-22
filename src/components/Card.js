@@ -5,6 +5,7 @@ import { countryList } from '../static/staticData';
 import '../App.css'
 import { CountryPopup } from '../components/CountryPopup.js'
 import { getSummaryByCountry } from '../service/MainService.js'
+import { words } from '../static/Internalization';
 
 export default class CardComponent extends React.Component {
   _isMounted = false;
@@ -66,7 +67,8 @@ export default class CardComponent extends React.Component {
 
     let countryList = []
     let lastArray = []
- 
+    let wordList= words[this.props.lang]
+
     if (this.props.cardType == "countries") {
       if (this.props.data != null && this.props.data != undefined && this.props.data.length != 0) {
 
@@ -78,12 +80,12 @@ export default class CardComponent extends React.Component {
                 <br></br><br></br>
                 <span style={{zIndex:"0"}} className={flagClassName} style={styleCard}></span>
                 <h3 >{x.Country != null || x.Country != undefined ? x.Country : "Dünya Geneli2"}</h3>
-                <Card.Header style={{ "fontWeight": "bold" }} >Günlük Vakalar : {x.NewConfirmed}</Card.Header>
-                <Card.Description textAlign="left">Toplam Vaka: {x.TotalConfirmed}</Card.Description>
-                <Card.Description textAlign="left">Günlük Ölüm: {x.NewDeaths}</Card.Description>
-                <Card.Description textAlign="left">Toplam Ölüm: {x.TotalDeaths}</Card.Description>
-                <Card.Description textAlign="left">Günlük İyileşenler: {x.NewRecovered}</Card.Description>
-                <Card.Description textAlign="left">Tarih: {this.props.date.toString().substring(0, 10)}</Card.Description>
+                <Card.Header style={{ "fontWeight": "bold" }} >{wordList.NewConfirmed}: {x.NewConfirmed}</Card.Header>
+                <Card.Description textAlign="left">{wordList.TotalConfirmed}: {x.TotalConfirmed}</Card.Description>
+                <Card.Description textAlign="left">{wordList.NewDeaths}: {x.NewDeaths}</Card.Description>
+                <Card.Description textAlign="left">{wordList.TotalDeaths}: {x.TotalDeaths}</Card.Description>
+                <Card.Description textAlign="left">{wordList.NewRecovered}: {x.NewRecovered}</Card.Description>
+                <Card.Description textAlign="left">{wordList.Date}: {this.props.date.toString().substring(0, 10)}</Card.Description>
               </Card.Content>
             </Card>
 
@@ -114,7 +116,7 @@ export default class CardComponent extends React.Component {
         {
           this.state.currentCountryCode && (
             <div>
-              <CountryPopup data={this.state.popupData} className="popup" countryCode={this.state.currentCountryCode} ></CountryPopup>
+              <CountryPopup data={this.state.popupData} className="popup" countryCode={this.state.currentCountryCode} lang={this.props.lang} ></CountryPopup>
             </div>
           )
         }
