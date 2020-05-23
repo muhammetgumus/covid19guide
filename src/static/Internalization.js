@@ -1,6 +1,6 @@
 
 export const words = {
-    en: {
+    gb: {
         NewConfirmed: "New Confirmed",
         TotalConfirmed: "Total Confirmed",
         NewDeaths: "New Deaths",
@@ -12,7 +12,7 @@ export const words = {
         Latitude: "Latitude",
         Longitude: "Longitude",
         Cases: "Cases",
-        stayHome: "#StayHome",
+        stayHome: "#stayhome",
         placeHolder: "Search Country",
         Language:"Language"
     },
@@ -28,7 +28,7 @@ export const words = {
         Latitude: "Enlem",
         Longitude: "Boylam",
         Cases: "Vaka Sayısı",
-        stayHome: "#EvdeKal",
+        stayHome: "#evdekal",
         placeHolder: "Ülke Ara",
         Language:"Dil"
     }    

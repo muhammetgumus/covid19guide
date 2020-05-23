@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   /*background-color: ##E6E7E8;*/
-  
+  zoom: 0.9;
 }
 
 .App-logo {
@@ -40,6 +40,12 @@ display: inline-block;
   color:darkgray;
   display: table-cell;
   
+}
+
+.translate {
+  width: "15px";
+  height: "15px";
+  display: inline;
 }
 
 .App-link {

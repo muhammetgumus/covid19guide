@@ -18,6 +18,7 @@ class Navbar extends React.Component {
         this.resultClick = this.resultClick.bind(this);
 
     }
+   
     resultClick(event) {
         document.getElementsByName(event.title.toString())[0].scrollIntoView({ behavior: "smooth" })
         document.getElementById("searchResultsContainer").innerHTML = ''
@@ -73,11 +74,20 @@ class Navbar extends React.Component {
     render() {
         let currentDate = this.state.currentDate;
         let wordList= words[this.props.lang];
+        // <h5 className="hashtag">{wordList.stayHome}</h5>
         return (
             <div>
-                <div className="clock" >{currentDate}</div>
-                <h5 className="hashtag">{wordList.stayHome}</h5>
-                <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder={wordList.placeHolder} id="searchbar" onChange={this.handleSearch}></input>
+            <div style={{display:"contents",float:"left"}}>
+                    <img htmlFor="tr-icon" src={require("../images/translate.png")} style={{width:"30px", height:"30px",verticalAlign:"middle",margin:"5px"}} className="translate"/>
+                        <div style={{display:"inline",marginRight:"10px"}}>
+                            <span id="tr-icon" style={{ zIndex: "0",right:0,cursor:"pointer"}} className={"flag-icon flag-icon-tr"} onClick={(event)=>this.props.onLangChange(event)} ></span>
+                        </div>
+                        <div style={{display:"inline", right:0}}>
+                            <span id="gb-icon" style={{ zIndex: "0",right:0,cursor:"pointer" }} className={"flag-icon flag-icon-gb"} onClick={(event)=>this.props.onLangChange(event)} ></span>
+                        </div>
+                    <div className="clock" >{currentDate}</div>
+                    </div>
+                <input type="text" className="searchbar" /*onFocus={(event) => this.styleNavbar(event)}*/ placeholder={wordList.placeHolder +" "+wordList.stayHome } id="searchbar" onChange={this.handleSearch}></input>
             </div>
         );
     }
