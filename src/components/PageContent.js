@@ -14,15 +14,19 @@ export default class PageContent extends React.Component {
             countriesData: [],
             date: [],
             datas: [],
-            lang: "gb"
+            lang: "gb",
+            userLocation: {
+                Lat: "",
+                Lon: ""
+            }
         };
         this.translateClick = this.translateClick.bind(this);
 
     }
-    translateClick(event){
+    translateClick(event) {
         this.setState({
-         ...this.state,
-         lang:String(event.target.id).substring(0,2)
+            ...this.state,
+            lang: String(event.target.id).substring(0, 2)
 
         })
     }
@@ -37,7 +41,7 @@ export default class PageContent extends React.Component {
                         date={this.state.date}
                         cardType="countries"
                         lang={this.state.lang}
-                        
+
                     >
                     </CardComponent>
 
@@ -58,5 +62,20 @@ export default class PageContent extends React.Component {
                 date: [...this.state.date, date]
             })
         })
+        if (window.navigator.geolocation) {
+            const userLocation = window.navigator.geolocation.getCurrentPosition((position) => {
+                this.setState({
+                    ...this.state,
+                    userLocation: {
+                        Lat: String(position.coords.latitude).substring(0,5),
+                        Lon: String(position.coords.longitude).substring(0,5)
+                    }
+                })
+               // console.log("Long: " + String(position.coords.longitude).substring(0,5) + " " + String(position.coords.latitude).substring(0,5))
+           
+        })
+
     }
+
+}
 }
