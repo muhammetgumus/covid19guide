@@ -61,3 +61,26 @@ export default async function summaryData() {
     const finalResult = await json;
     return finalResult;
 }
+
+export async function getUserCountry(coordinates){
+    const options = {
+        "Access-Control-Allow-Origin":true
+    }
+    const result = await fetch(`https://geocode.xyz/${coordinates}?geoit=JSON`,options)
+    
+    const parsedResult= await result.json()
+    const countryCode = await parsedResult.prov;
+    return await countryCode;
+}
+
+export const userCountry = new Promise((resolve,reject)=>{
+    if(window.navigator.geolocation){
+        window.navigator.geolocation.getCurrentPosition((position) => {
+            const coordinates=String(position.coords.latitude).substring(0,5)+","+
+            String(position.coords.longitude).substring(0,5)
+            resolve(getUserCountry(coordinates));
+    })
+    }else{
+        reject("Error occured while getting location")
+    }
+})

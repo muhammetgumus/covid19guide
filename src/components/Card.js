@@ -104,6 +104,24 @@ export default class CardComponent extends React.Component {
           lastArray.push(row)
         }
       }
+    }else{
+      return(
+        <Card key={"global"} name={"global"} value={"global"} id={"global"}>
+        <Card.Content key={"global"} className="cardExample" name={"global"} value={"global"} onClick={this.handleCardClick.bind(this)}>
+        <br></br><br></br>
+        <span style={{zIndex:"0"}} /*className={flagClassName}*/ style={styleCard}></span>
+        <h3 >{"Dünya Geneli2"}</h3>
+        <Card.Header style={{ "fontWeight": "bold" }} >{wordList.NewConfirmed}: {x.NewConfirmed}</Card.Header>
+        <Card.Description textAlign="left">{wordList.TotalConfirmed}: {x.TotalConfirmed}</Card.Description>
+        <Card.Description textAlign="left">{wordList.NewDeaths}: {x.NewDeaths}</Card.Description>
+        <Card.Description textAlign="left">{wordList.TotalDeaths}: {x.TotalDeaths}</Card.Description>
+        <Card.Description textAlign="left">{wordList.NewRecovered}: {x.NewRecovered}</Card.Description>
+        <Card.Description textAlign="left">{wordList.Date}: {this.props.date.toString().substring(0, 10)}</Card.Description>
+      </Card.Content>
+    </Card>
+
+      ) 
+
     }
 
     return (

@@ -4,6 +4,7 @@ import CardComponent from './Card.js';
 import Navbar from './Navbar.js';
 import '../App.css';
 import { Container, Grid, Card, Icon } from 'semantic-ui-react';
+import { getUserCountry,userCountry } from '../service/MainService'
 //import "../images/translate."
 
 export default class PageContent extends React.Component {
@@ -17,7 +18,8 @@ export default class PageContent extends React.Component {
             lang: "gb",
             userLocation: {
                 Lat: "",
-                Lon: ""
+                Lon: "",
+                CountryCode: ""
             }
         };
         this.translateClick = this.translateClick.bind(this);
@@ -36,7 +38,18 @@ export default class PageContent extends React.Component {
             <div>
                 <Container className="App" className="containerApp" /*style={{ margin: '30px' }}*/>
                     <Navbar className="card-navbar" lang={this.state.lang} onLangChange={this.translateClick}></Navbar>
-                    <CardComponent className="cardComponent" /*style={{"display":"inline-block"}}*/
+                    <div>
+                        <CardComponent className="cardComponent" data={this.state.globalData} date={this.state.date}cardType="global"lang={this.state.lang}></CardComponent>
+                    </div>
+                    <CardComponent className="cardComponent" data={this.state.countriesData} date={this.state.date}
+                        cardType="countries"
+                        lang={this.state.lang}
+
+                    >
+                    </CardComponent>
+
+
+                    <CardComponent className="cardComponent"
                         data={this.state.countriesData}
                         date={this.state.date}
                         cardType="countries"
@@ -67,15 +80,22 @@ export default class PageContent extends React.Component {
                 this.setState({
                     ...this.state,
                     userLocation: {
-                        Lat: String(position.coords.latitude).substring(0,5),
-                        Lon: String(position.coords.longitude).substring(0,5)
+                        Lat: String(position.coords.latitude).substring(0, 5),
+                        Lon: String(position.coords.longitude).substring(0, 5)
                     }
                 })
-               // console.log("Long: " + String(position.coords.longitude).substring(0,5) + " " + String(position.coords.latitude).substring(0,5))
-           
-        })
+                const coordinates = this.state.userLocation.Lat + "," + this.state.userLocation.Lon
+                    userCountry.then(data=>{
+                        this.setState({
+                            ...this.state,
+                            userLocation: {
+                                CountryCode: data
+                            }
+                        })
+                    })
+            })
+
+        }
 
     }
-
-}
 }
