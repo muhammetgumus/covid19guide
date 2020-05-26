@@ -14,7 +14,8 @@ export const words = {
         Cases: "Cases",
         stayHome: "#stayhome",
         placeHolder: "Search Country",
-        Language:"Language"
+        Language:"Language",
+        Global:"Global"
     },
     tr: {
         NewConfirmed: "Günlük Vakalar",
@@ -30,6 +31,7 @@ export const words = {
         Cases: "Vaka Sayısı",
         stayHome: "#evdekal",
         placeHolder: "Ülke Ara",
-        Language:"Dil"
+        Language:"Dil",
+        Global:"Dünya Geneli"
     }    
 }

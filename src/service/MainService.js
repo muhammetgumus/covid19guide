@@ -18,7 +18,7 @@ export function getSummaryData() {
             countryCodes.forEach((countryCode) => {
                 countryList.forEach((countryObject) => {
                     if (countryObject.value === countryCode) {
-                        console.log(countryObject);
+                        //console.log(countryObject);
                         availableCountries.push(countryObject)
                     }
                 })

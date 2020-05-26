@@ -33,14 +33,22 @@ export default class PageContent extends React.Component {
         })
     }
     render() {
+/*
+<div>
+                        <CardComponent className="cardComponent" data={this.state.globalData} date={this.state.date}cardType="global"lang={this.state.lang}></CardComponent>
+                    </div>
 
+*/
         return (
             <div>
                 <Container className="App" className="containerApp" /*style={{ margin: '30px' }}*/>
                     <Navbar className="card-navbar" lang={this.state.lang} onLangChange={this.translateClick}></Navbar>
-                    <div>
-                        <CardComponent className="cardComponent" data={this.state.globalData} date={this.state.date}cardType="global"lang={this.state.lang}></CardComponent>
-                    </div>
+                    <CardComponent className="cardComponent" data={this.state.globalData} date={this.state.date}
+                        cardType="global"
+                        lang={this.state.lang}
+
+                    >
+                    </CardComponent>
                     <CardComponent className="cardComponent" data={this.state.countriesData} date={this.state.date}
                         cardType="countries"
                         lang={this.state.lang}

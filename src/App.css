@@ -125,6 +125,21 @@ tr:hover td{
   
 }
 
+.world{
+  width: 100%;
+  height: 320px;
+  /*width: 100%;
+  height: 100%;*/
+  display :inline-block;
+  margin:20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 10px 5px;
+  padding: 4px;
+  
+}
+
+
 .clock{
 display: block;
 text-align: right;
