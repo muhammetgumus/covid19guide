@@ -106,20 +106,24 @@ export default class CardComponent extends React.Component {
       }
     }else{
       if (this.props.data != null && this.props.data != undefined && this.props.data.length != 0){
-
+        let flagClassName=""
+        if(this.props.cardType!="global"){
+           flagClassName = "flag-icon flag-icon-" + this.props.data.CountryCode.toLowerCase()
+        }
         return(
-          <div style={{display:"block"}}>
-          <Card key={"global"} name={"global"} value={"global"} id={"global"}>
-          <Card.Content key={"global"} className="world" style={{width:"85%"}} name={"global"} value={"global"} onClick={this.handleCardClick.bind(this)}>
+          <div >
+          <Card key={this.props.cardType} name={this.props.cardType} value={this.props.cardType} id={this.props.cardType}>
+          <Card.Content key={this.props.cardType} className="world" style={{width:"85%"}} name={this.props.cardType} value={this.props.cardType} onClick={this.handleCardClick.bind(this)}>
           <br></br><br></br>
-          <img style={{zIndex:"0"}} src={require("../images/global.png")} style={styleCard}></img>
-          <h3 >{wordList.Global}</h3>
-          <Card.Header style={{ "fontWeight": "bold" }} >{wordList.NewConfirmed}: {this.props.data[0].NewConfirmed}</Card.Header>
-          <Card.Description textAlign="left">{wordList.TotalConfirmed}: {this.props.data[0].TotalConfirmed}</Card.Description>
-          <Card.Description textAlign="left">{wordList.NewDeaths}: {this.props.data[0].NewDeaths}</Card.Description>
-          <Card.Description textAlign="left">{wordList.TotalDeaths}: {this.props.data[0].TotalDeaths}</Card.Description>
-          <Card.Description textAlign="left">{wordList.NewRecovered}: {this.props.data[0].NewRecovered}</Card.Description>
-          <Card.Description textAlign="left">{wordList.Date}: {this.props.date.toString().substring(0, 10)}</Card.Description>
+          {this.props.cardType=="global"&&<img style={{zIndex:"0"}} src={require("../images/worldmap.png")} style={styleCard}></img>}
+          {this.props.cardType!="global" && <span style={{zIndex:"0"}} className={flagClassName} style={styleCard}></span>}
+          <h3 >{this.props.cardType=="global"? wordList.Global:wordList.CurrentLocation+this.props.data.Country}</h3> 
+          <Card.Header style={{ "fontWeight": "bold" }} >{wordList.NewConfirmed}: {this.props.cardType=="global"?this.props.data[0].NewConfirmed:this.props.data.NewConfirmed}</Card.Header>
+          <Card.Description style={{ "fontWeight": "bold" }} textAlign="left">{wordList.TotalConfirmed}:{this.props.cardType=="global"? this.props.data[0].TotalConfirmed:this.props.data.TotalConfirmed}</Card.Description>
+          <Card.Description textAlign="left" style={{ "fontWeight": "bold" }}>{wordList.NewDeaths}: {this.props.cardType=="global"?this.props.data[0].NewDeaths:this.props.data.NewDeaths}</Card.Description>
+          <Card.Description textAlign="left" style={{ "fontWeight": "bold" }}>{wordList.TotalDeaths}: {this.props.cardType=="global"?this.props.data[0].TotalDeaths:this.props.data.TotalDeaths}</Card.Description>
+          <Card.Description textAlign="left" style={{ "fontWeight": "bold" }}>{wordList.NewRecovered}: {this.props.cardType=="global"?this.props.data[0].NewRecovered:this.props.data.NewRecovered}</Card.Description>
+          <Card.Description textAlign="left" style={{ "fontWeight": "bold" }}>{wordList.Date}: {/*this.props.cardType=="global"?*/this.props.date.toString().substring(0, 10)}</Card.Description>
         </Card.Content>
       </Card>
       </div>

@@ -20,7 +20,8 @@ export default class PageContent extends React.Component {
                 Lat: "",
                 Lon: "",
                 CountryCode: ""
-            }
+            },
+            userLocationData:[]
         };
         this.translateClick = this.translateClick.bind(this);
 
@@ -49,6 +50,15 @@ export default class PageContent extends React.Component {
 
                     >
                     </CardComponent>
+                   {this.state.userLocationData.length!=0 &&
+                    <CardComponent className="cardComponent" data={this.state.userLocationData} date={this.state.date}
+                        cardType="userCountry"
+                        lang={this.state.lang}
+
+                    >
+                    </CardComponent>
+                   
+                   } 
                     <CardComponent className="cardComponent" data={this.state.countriesData} date={this.state.date}
                         cardType="countries"
                         lang={this.state.lang}
@@ -92,15 +102,29 @@ export default class PageContent extends React.Component {
                         Lon: String(position.coords.longitude).substring(0, 5)
                     }
                 })
+
                 const coordinates = this.state.userLocation.Lat + "," + this.state.userLocation.Lon
                     userCountry.then(data=>{
                         this.setState({
                             ...this.state,
                             userLocation: {
                                 CountryCode: data
-                            }
+                            },
+                            
                         })
+                        const userCountryCode= this.state.userLocation.CountryCode
+                        if(this.state.countriesData.length!=0){
+                            this.state.countriesData[0].map(countryCard=>{
+                                if(countryCard['CountryCode']==userCountryCode){
+                                   this.setState({userLocationData:countryCard}) 
+                                }
+                            })    
+
+                        }
+                        
+
                     })
+                    
             })
 
         }

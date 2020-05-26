@@ -15,7 +15,8 @@ export const words = {
         stayHome: "#stayhome",
         placeHolder: "Search Country",
         Language:"Language",
-        Global:"Global"
+        Global:"Global",
+        "CurrentLocation":"Your Current Location:"
     },
     tr: {
         NewConfirmed: "Günlük Vakalar",
@@ -32,6 +33,7 @@ export const words = {
         stayHome: "#evdekal",
         placeHolder: "Ülke Ara",
         Language:"Dil",
-        Global:"Dünya Geneli"
+        Global:"Dünya Geneli",
+        "CurrentLocation":"Konumunuz:"
     }    
 }
