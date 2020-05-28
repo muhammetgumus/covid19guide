@@ -13,7 +13,7 @@ export function getSummaryData() {
 
             })
             return countryCodes;
-        }).then((countryCodes) => {
+        })/*.then((countryCodes) => {
             let availableCountries = []
             countryCodes.forEach((countryCode) => {
                 countryList.forEach((countryObject) => {
@@ -24,7 +24,7 @@ export function getSummaryData() {
                 })
             })
             return availableCountries;
-        })
+        })*/
 
     return result;
 
