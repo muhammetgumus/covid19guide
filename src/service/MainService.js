@@ -7,12 +7,14 @@ export function getSummaryData() {
             return res
         })
         .then((res) => {
-            let countryCodes = []
+            //let countryCodes = []
+            let countries = []
             res.Countries.forEach(country => {
-                countryCodes.push(country.CountryCode);
+               // countryCodes.push(country.CountryCode);
+                countries.push(country);
 
             })
-            return countryCodes;
+            return countries;
         })/*.then((countryCodes) => {
             let availableCountries = []
             countryCodes.forEach((countryCode) => {

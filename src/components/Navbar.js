@@ -45,14 +45,15 @@ class Navbar extends React.Component {
 
         if (this.state.searchbarArr.length >= 1) {
             for (let element of this.state.searchbarArr) {
-                if (element["label"].toLowerCase().includes(event.target.value.toLowerCase())) {
+                if (element["Country"].toLowerCase().includes(event.target.value.toLowerCase())) {
                     if (totalResult != 5) {
                         let tableRow = document.createElement('tr');
                         let tableData = document.createElement('td');
                         tableData.id = Math.ceil(Math.random() * 100)
-                        tableData.textContent = element.label;
-                        tableData.value = element.label;
-                        tableData.title = element.value;
+                        tableData.textContent = element.Country;
+                        tableData.value = element.CountryCode;
+                        tableData.title = element.Country;
+                        tableData.name=element.Country;
                         tableData.onclick = () => { this.resultClick(tableData); }
                         tableRow.appendChild(tableData)
                         tableElement.appendChild(tableRow);

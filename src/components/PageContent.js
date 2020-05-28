@@ -59,13 +59,7 @@ export default class PageContent extends React.Component {
                     </CardComponent>
                    
                    } 
-                    <CardComponent className="cardComponent" data={this.state.countriesData} date={this.state.date}
-                        cardType="countries"
-                        lang={this.state.lang}
-
-                    >
-                    </CardComponent>
-
+                    
 
                     <CardComponent className="cardComponent"
                         data={this.state.countriesData}
