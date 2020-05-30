@@ -15,18 +15,7 @@ export function getSummaryData() {
 
             })
             return countries;
-        })/*.then((countryCodes) => {
-            let availableCountries = []
-            countryCodes.forEach((countryCode) => {
-                countryList.forEach((countryObject) => {
-                    if (countryObject.value === countryCode) {
-                        //console.log(countryObject);
-                        availableCountries.push(countryObject)
-                    }
-                })
-            })
-            return availableCountries;
-        })*/
+        })
 
     return result;
 

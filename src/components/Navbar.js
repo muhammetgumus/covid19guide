@@ -1,6 +1,7 @@
 import React from 'react';
 import { getSummaryData } from '../service/MainService.js'
 import { Select } from 'semantic-ui-react'
+import{ countryList } from '../static/staticData'
 import { getCurrentDate } from '../utils/Utility.js'
 import {words} from '../static/Internalization'
 import '../App.css';
@@ -107,7 +108,18 @@ class Navbar extends React.Component {
                     clearInterval(isArrived)
                 }
             }, 500)
-
+            return countriesData
+        }).then((countryCodes) => {
+            let availableCountries = []
+            countryCodes.forEach((countryCode) => {
+                countryList.forEach((countryObject) => {
+                    if (countryObject.value === countryCode) {
+                        //console.log(countryObject);
+                        availableCountries.push(countryObject)
+                    }
+                })
+            })
+            return availableCountries;
         })
 
     }
